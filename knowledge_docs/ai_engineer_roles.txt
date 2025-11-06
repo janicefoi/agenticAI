@@ -1,0 +1,6 @@
+AI Engineer Roles and Responsibilities:
+
+1. Design, implement, and maintain AI models.
+2. Collaborate with product teams to integrate AI solutions.
+3. Maintain data pipelines and ensure data quality.
+4. Participate in code reviews and knowledge sharing sessions.
