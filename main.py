@@ -1,20 +1,22 @@
-# main.py
-import os
+from orchestrator.langgraph_graph import build_agent_graph
 
-# 1. Load documents
-docs = {}
-for fname in os.listdir("knowledge_docs"):
-    if fname.endswith(".txt"):
-        with open(os.path.join("knowledge_docs", fname)) as f:
-            docs[fname] = f.read()
+if __name__ == "__main__":
+    agent = build_agent_graph()
 
-# 2. Query function
-def query_documents(query):
-    for name, text in docs.items():
-        if query.lower() in text.lower():
-            return f"Found in {name}:\n{text}"
-    return "No match found."
+    print("🤖 Welcome to your Agentic AI Research Assistant!")
+    print("Type your query (or 'exit' to quit):")
 
-# 3. Run query
-response = query_documents("AI engineer")
-print(response)
+    while True:
+        user_query = input("\nYour query: ")
+        if user_query.lower() in ["exit", "quit"]:
+            print("Goodbye! 👋")
+            break
+
+        result = agent.invoke({"query": user_query})
+
+        print("\n=== FINAL ANSWER ===")
+        print(result["observation"])
+        print("\n=== REFLECTION ===")
+        print(result["reflection"])
+        print("\n=== METADATA ===")
+        print(result["metadata"])
